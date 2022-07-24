@@ -2,21 +2,23 @@ import React, { useState } from 'react';
 import { validateEmail } from '../../utils/helpers';
 
 function ContactForm() {
-    const [errorMessage, setErrorMessage] = useState('');
+    // manage form data, empty out the initialize values
     const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+    // deconstructing the formState object into it's named properties
     const { name, email, message } = formState;
+    // error message
+    const [errorMessage, setErrorMessage] = useState('');
 
     function handleChange(e) {
         if (e.target.name === 'email') {
             const isValid = validateEmail(e.target.value);
             console.log(isValid);
-            // isValid conditional statement
             if (!isValid) {
-                setErrorMessage('Your email is invalid.');
-            }
-            else {
+                setErrorMessage('Your email is invalid');
+            } else {
                 setErrorMessage('');
             }
+            // checking if name and message has input 
         } else {
             if (!e.target.value.length) {
                 setErrorMessage(`${e.target.name} is required.`);
@@ -24,19 +26,23 @@ function ContactForm() {
                 setErrorMessage('');
             }
         }
+        // setFormState is updating formState for the property
         if (!errorMessage) {
-            setFormState({ ...formState, [e.target.name]: e.target.value });
+            setFormState({ ...formState, [e.target.name]: e.target.value })
         }
     }
+    // console.log(formState);
+    // console.log('errorMessage', errorMessage)
 
+    // form submit 
     function handleSubmit(e) {
         e.preventDefault();
         console.log(formState);
     }
-    // JSX
+
     return (
         <section>
-            <h1>Contact me</h1>
+            <h1 data-testid='h1tag'>Contact Me</h1>
             <form id="contact-form">
                 <div>
                     <label htmlFor="name">Name:</label>
@@ -44,7 +50,7 @@ function ContactForm() {
                 </div>
                 <div>
                     <label htmlFor="email">Email address:</label>
-                    <input type="email" defaultValue={email} name="email" onBlur={handleChange} />
+                    <input type="email" defaultValue={email} onBlur={handleChange} name="email" />
                 </div>
                 <div>
                     <label htmlFor="message">Message:</label>
@@ -55,7 +61,7 @@ function ContactForm() {
                         <p className="error-text">{errorMessage}</p>
                     </div>
                 )}
-                <button type="submit" onSubmit={handleSubmit}>Submit</button>
+                <button data-testid='button' type="submit" onSubmit={handleSubmit}>Submit</button>
             </form>
         </section>
     );

@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-// import logo from './logo.svg';
-import Nav from './components/Nav';
 import About from './components/About';
+import Nav from './components/Nav'
 import Gallery from './components/Gallery';
 import ContactForm from './components/Contact';
-import './App.css';
-
 
 function App() {
+  // lifting from Nav
   const [categories] = useState([
     {
       name: 'commercial',
-      description: 'Photos of grocery stores, food trucks, and other commercial projects.',
+      description: 'Photos of grocery stores, food trucks, and other commercial projects',
     },
     { name: 'portraits', description: 'Portraits of people in my life' },
     { name: 'food', description: 'Delicious delicacies' },
@@ -20,7 +18,7 @@ function App() {
 
   const [currentCategory, setCurrentCategory] = useState(categories[0]);
 
-  // contact form is not initially shown, the gallery is
+  // contact form is not initially shown, gallery is 
   const [contactSelected, setContactSelected] = useState(false);
 
   return (

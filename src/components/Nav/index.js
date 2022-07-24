@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
-import { capitalizeFirstLetter } from '../../utils/helpers';
+import React, { useEffect } from "react";
+import { capitalizeFirstLetter } from "../../utils/helpers";
 
 function Nav(props) {
+    // hook 
+    // const [currentCategory, setCurrentCategory] = useState(categories[0]);
     const {
         categories = [],
         setCurrentCategory,
@@ -12,13 +14,14 @@ function Nav(props) {
 
     useEffect(() => {
         document.title = capitalizeFirstLetter(currentCategory.name);
-    }, [currentCategory]);
+    },
+        [currentCategory]);
 
     return (
         <header className="flex-row px-1">
             <h2>
                 <a data-testid="link" href="/">
-                    <span role="img" aria-label="camera"> 📸</span> Oh Snap!
+                    <span role="img" aria-label="camera">📸</span>Oh Snap!
                 </a>
             </h2>
             <nav>
@@ -32,7 +35,7 @@ function Nav(props) {
                         <span onClick={() => setContactSelected(true)}>Contact</span>
                     </li>
                     {categories.map((category) => (
-                        <li className={`mx-1 ${currentCategory.name === category.name && !contactSelected && `navActive`
+                        <li className={`mx-1 ${currentCategory.name === category.name && !contactSelected && 'navActive'
                             }`} key={category.name}>
                             <span
                                 onClick={() => {

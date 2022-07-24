@@ -1,20 +1,31 @@
+
+
 import React from 'react';
+/// react testing library
 import { render, cleanup } from '@testing-library/react';
+// extend-expect from jest-dom
 import '@testing-library/jest-dom/extend-expect';
+// import about component
 import About from '..';
 
+
+// call the clean up function
 afterEach(cleanup);
 
+// use the describe function to declare the component we're testing 
 describe('About component', () => {
-    // First Test
+    // renders About test
+    // first test - verifying that the component is rendering (baseline test)
     it('renders', () => {
-        render(<About />);
+        render(<About />)
     });
 
-    // Second Test
+    // second test - "test case" - compare snapshot versions of the DOM node structure (snapshot test)
     it('matches snapshot DOM node structure', () => {
-        // render About
+        // render about 
         const { asFragment } = render(<About />);
         expect(asFragment()).toMatchSnapshot();
-      });
+    })
+
+
 })
